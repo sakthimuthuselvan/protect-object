@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            margin: auto;
+            text-align: center;
+        }
+        button{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- <input type="number" id="num">
+        <p id="para"></p> -->
+
+        <button id="btn">add protect</button>
+        <button id="btn2">increment</button>
+        <button id="btn3">decrement</button>
+        <button id="btn4">delete</button>
+    </div>
+    <script>
+       
+
+var obj=[{pName:"AC",price:20000,id:1},
+         {pName:"TV",price:40000,id:2},
+         {pName:"BIKE",price:120000,id:3},
+         {pName:"MOBILE",price:15000,id:4},
+         {pName:"freidge",price:23000,id:5},
+         {pName:"laptop",price:75000,id:6}
+    ]
+var collect=[]
+
+var btn=document.getElementById("btn");
+var btn2=document.getElementById("btn2")
+var btn3=document.getElementById("btn3")
+var btn4=document.getElementById("btn4")
+
+
+btn.addEventListener("click",function(){
+    var p=prompt("enter")
+if(collect==""){
+    var res=obj.find((item)=>{
+        return item.id==p;
+    })
+    if(res){
+            res.qty=1;
+            collect.push(res)   
+        }
+        console.log(collect)
+
+    }else{
+        // console.log(collect)
+        let store = collect.find((item)=>{
+            return item.id=p;
+        })
+
+        if(store){
+            store.qty+=1; 
+            console.log(collect);
+        }
+       
+        
+    }
+    
+})
+
+
+function increment(){
+    var a=parseInt(prompt("increment protect"))
+
+    collect.map((item)=>{
+        if(item.id==a){
+
+           item.qty+=1;
+        }   
+    })
+    console.log(collect);
+}
+btn2.addEventListener("click",increment)
+
+function decrement(){
+    var a=parseInt(prompt("decrement"))
+
+    collect.map((item)=>{
+        if(item.id==a){
+            item.qty-=1;
+            console.log(collect);
+            collect.map((item)=>{
+                if(item.qty<=0){
+                    let easy=collect.find((i) => {
+                        return i.id === a;
+                    })
+                    collect.splice(easy,1); 
+                    console.log(collect)
+                   
+                }
+            })
+        }   
+    })
+}
+btn3.addEventListener("click",decrement)
+
+function del(){
+collect.splice(0,1)
+console.log(collect)
+}
+btn4.addEventListener("click",del)
+
+
+
+
+
+    </script>
+</body>
+</html>
