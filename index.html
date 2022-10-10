@@ -45,29 +45,38 @@ var btn4=document.getElementById("btn4")
 
 
 btn.addEventListener("click",function(){
-    var p=prompt("enter")
+    var p=parseInt(prompt("enter"))
+
+
 if(collect==""){
     var res=obj.find((item)=>{
         return item.id==p;
     })
     if(res){
-            res.qty=1;
-            collect.push(res)   
-        }
-        console.log(collect)
+        res.qty=1;
+        collect.push(res)
+    }
+    console.log(collect)
 
-    }else{
-        // console.log(collect)
-        let store = collect.find((item)=>{
-            return item.id=p;
-        })
+}else{
+    
 
-        if(store){
-            store.qty+=1; 
-            console.log(collect);
-        }
-       
-        
+    let store=collect.find((item)=>{
+              return item.id===p;
+            })
+            if(store){
+                store.qty+=1;
+                console.log(collect)
+                 }else{
+                    let add=obj.find((item)=>{
+                    return item.id==p;
+                })
+                    add.qty=1;
+                collect.push(add)
+                console.log(collect)
+
+                 }
+
     }
     
 })
@@ -109,14 +118,10 @@ function decrement(){
 btn3.addEventListener("click",decrement)
 
 function del(){
-collect.splice(0,1)
+collect.splice(0,10)
 console.log(collect)
 }
 btn4.addEventListener("click",del)
-
-
-
-
 
     </script>
 </body>
